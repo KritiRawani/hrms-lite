@@ -9,9 +9,14 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="HRMS Lite")
 
+origins = [
+    "http://localhost:5173",                 # local frontend
+    "https://hrms-lite-chi.vercel.app",       # vercel frontend
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
